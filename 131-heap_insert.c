@@ -10,57 +10,58 @@
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-    heap_t *new_node;
-    heap_t *parent;
+	heap_t *new_node;
+	heap_t *parent;
 
-    if (root == NULL)
-        return NULL;
+	if (root == NULL)
+		return (NULL);
 
-    new_node = binary_tree_node(NULL, value);
-    if (new_node == NULL)
-        return NULL;
+	new_node = binary_tree_node(NULL, value);
+	if (new_node == NULL)
+		return (NULL);
 
-    if (*root == NULL)
-    {
-        *root = new_node;
-        return new_node;
-    }
+	if (*root == NULL)
+	{
+		*root = new_node;
+		return (new_node);
+	}
 
-    parent = find_parent(*root);
-    if (parent->left == NULL)
-        parent->left = new_node;
-    else
-        parent->right = new_node;
+	parent = find_parent(*root);
+	if (parent->left == NULL)
+		parent->left = new_node;
+	else
+		parent->right = new_node;
 
-    new_node->parent = parent;
+	new_node->parent = parent;
 
-    heapify_up(new_node);
+	heapify_up(new_node);
 
-    return new_node;
+	return (new_node);
 }
 
 /**
- * find_parent - Finds the parent node for the next insertion in a Max Binary Heap
+ * find_parent - Finds the parent node for the next insertion in a MBH
  * @root: Pointer to the root node of the Heap
  *
  * Return: Pointer to the parent node
  */
 heap_t *find_parent(heap_t *root)
 {
-    heap_t *parent;
-    size_t size;
+	heap_t *parent;
+	size_t size;
 
-    size = binary_tree_size(root);
+	size = binary_tree_size(root);
 
-    parent = get_parent_recursive(root, size);
-    while (parent->left != NULL && parent->right != NULL)
-        parent = get_parent_recursive(root, --size);
+	parent = get_parent_recursive(root, size);
+	while (parent->left != NULL && parent->right != NULL)
+		parent = get_parent_recursive(root, --size);
 
-    return parent;
+	return (parent);
 }
 
 /**
- * get_parent_recursive - Recursively finds the parent node for the next insertion in a Max Binary Heap
+ * get_parent_recursive - Recursively finds the parent node for the
+ *						next insertion in a Max Binary Heap
  * @node: Pointer to the current node
  * @index: Index of the current node
  *
@@ -68,13 +69,13 @@ heap_t *find_parent(heap_t *root)
  */
 heap_t *get_parent_recursive(heap_t *node, size_t index)
 {
-    if (index / 2 == 1)
-        return node;
+	if (index / 2 == 1)
+		return (node);
 
-    if (index % 2 == 0)
-        return get_parent_recursive(node->left, index / 2);
-    else
-        return get_parent_recursive(node->right, index / 2);
+	if (index % 2 == 0)
+		return (get_parent_recursive(node->left, index / 2));
+	else
+		return (get_parent_recursive(node->right, index / 2));
 }
 
 /**
@@ -83,17 +84,17 @@ heap_t *get_parent_recursive(heap_t *node, size_t index)
  */
 void heapify_up(heap_t *node)
 {
-    heap_t *parent;
-    int temp;
+	heap_t *parent;
+	int temp;
 
-    while (node->parent != NULL && node->n > node->parent->n)
-    {
-        parent = node->parent;
-        temp = node->n;
-        node->n = parent->n;
-        parent->n = temp;
-        node = parent;
-    }
+	while (node->parent != NULL && node->n > node->parent->n)
+	{
+		parent = node->parent;
+		temp = node->n;
+		node->n = parent->n;
+		parent->n = temp;
+		node = parent;
+	}
 }
 
 /**
@@ -104,8 +105,8 @@ void heapify_up(heap_t *node)
  */
 size_t binary_tree_size(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return 0;
+	if (tree == NULL)
+		return (0);
 
-    return 1 + binary_tree_size(tree->left) + binary_tree_size(tree->right);
+	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }

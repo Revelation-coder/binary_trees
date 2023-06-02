@@ -9,10 +9,10 @@
  */
 int binary_tree_is_heap(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return 0;
+	if (tree == NULL)
+		return (0);
 
-    return is_max_heap(tree) && is_complete_tree(tree);
+	return (is_max_heap(tree) && is_complete_tree(tree));
 }
 
 /**
@@ -23,16 +23,16 @@ int binary_tree_is_heap(const binary_tree_t *tree)
  */
 int is_max_heap(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return 1;
+	if (tree == NULL)
+		return (1);
 
-    if (tree->left != NULL && tree->n < tree->left->n)
-        return 0;
+	if (tree->left != NULL && tree->n < tree->left->n)
+		return (0);
 
-    if (tree->right != NULL && tree->n < tree->right->n)
-        return 0;
+	if (tree->right != NULL && tree->n < tree->right->n)
+		return (0);
 
-    return is_max_heap(tree->left) && is_max_heap(tree->right);
+	return (is_max_heap(tree->left) && is_max_heap(tree->right));
 }
 
 /**
@@ -43,13 +43,13 @@ int is_max_heap(const binary_tree_t *tree)
  */
 int is_complete_tree(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return 1;
+	if (tree == NULL)
+		return (1);
 
-    if (is_complete_tree_helper(tree, 0, binary_tree_size(tree)) == binary_tree_size(tree))
-        return 1;
+	if (is_complete_tree_helper(tree, 0, binary_tree_size(tree)) == binary_tree_size(tree))
+		return (1);
 
-    return 0;
+	return (0);
 }
 
 /**
@@ -60,10 +60,10 @@ int is_complete_tree(const binary_tree_t *tree)
  */
 size_t binary_tree_size(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return 0;
+	if (tree == NULL)
+		return (0);
 
-    return 1 + binary_tree_size(tree->left) + binary_tree_size(tree->right);
+	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
 
 /**
@@ -76,12 +76,13 @@ size_t binary_tree_size(const binary_tree_t *tree)
  */
 size_t is_complete_tree_helper(const binary_tree_t *tree, size_t index, size_t size)
 {
-    if (tree == NULL)
-        return 0;
+	if (tree == NULL)
+		return (0);
 
-    if (index >= size)
-        return 0;
+	if (index >= size)
+		return (0);
 
-    return 1 + is_complete_tree_helper(tree->left, 2 * index + 1, size) +
-           is_complete_tree_helper(tree->right, 2 * index + 2, size);
+	return (1 + is_complete_tree_helper(tree->left, 2 * index + 1, size) +
+		   is_complete_tree_helper(tree->right, 2 * index + 2, size));
 }
+

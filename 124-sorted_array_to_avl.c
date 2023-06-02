@@ -2,6 +2,16 @@
 #include "binary_trees.h"
 
 /**
+ * sorted_array_to_avl_helper - Helper function to build AVL tree recursively
+ * @array: Pointer to the first element of the array
+ * @start: Starting index of the current subarray
+ * @end: Ending index of the current subarray
+ *
+ * Return: Pointer to the root node of the created AVL tree, or NULL on failure
+ */
+avl_t *sorted_array_to_avl_helper(int *array, int start, int end);
+
+/**
  * sorted_array_to_avl - Builds an AVL tree from a sorted array
  * @array: Pointer to the first element of the array
  * @size: Number of elements in the array

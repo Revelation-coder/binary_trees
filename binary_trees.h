@@ -42,6 +42,10 @@ typedef struct levelorder_queue_s
 void binary_tree_print(const binary_tree_t *);
 
 /* Task function prototypes */
+int is_max_heap(const binary_tree_t *tree);
+int is_complete_tree(const binary_tree_t *tree);
+size_t binary_tree_size(const binary_tree_t *tree);
+size_t is_complete_tree_helper(const binary_tree_t *tree, size_t index, size_t size);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);

@@ -42,6 +42,9 @@ typedef struct levelorder_queue_s
 void binary_tree_print(const binary_tree_t *);
 
 /* Task function prototypes */
+heap_t *find_parent(heap_t *root);
+heap_t *get_parent_recursive(heap_t *node, size_t index);
+void heapify_up(heap_t *node);
 int is_max_heap(const binary_tree_t *tree);
 int is_complete_tree(const binary_tree_t *tree);
 size_t binary_tree_size(const binary_tree_t *tree);
